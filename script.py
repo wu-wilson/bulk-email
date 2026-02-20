@@ -1,28 +1,17 @@
-"""
-send_emails.py — Send personalized cold emails via Gmail.
-
-Usage:
-    python send_emails.py --csv recipients.csv --template template.txt [--delay 1.5]
-
-Setup:
-    See README.md for Gmail OAuth2 credentials setup instructions.
-"""
-
 import argparse
 import base64
 import csv
 import logging
 import sys
 import time
-from dataclasses import dataclass
-from datetime import datetime, timezone
 import html
 import re
+from dataclasses import dataclass
+from datetime import datetime, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 from string import Template
-
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -58,7 +47,6 @@ log = logging.getLogger(__name__)
 class EmailTemplate:
     subject: Template
     body: Template
-
 
 @dataclass
 class SendResult:
