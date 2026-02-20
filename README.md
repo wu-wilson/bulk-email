@@ -4,7 +4,7 @@ Send personalized emails via Gmail using a CSV list and a text template.
 
 ## 🛠️ Local Setup
 
-#### Prerequisites
+#### 1. Prerequisites
 
 - Python 3.14+
 - [Pipenv](https://pipenv.pypa.io) — manages dependencies and virtualenv
@@ -13,7 +13,7 @@ Send personalized emails via Gmail using a CSV list and a text template.
 python3 -m pip install pipenv
 ```
 
-#### Retrieve OAuth Credentials
+#### 2. Retrieve OAuth Credentials
 
 1. Create a Google Cloud project
 2. Enable **Gmail API**
@@ -21,7 +21,7 @@ python3 -m pip install pipenv
 4. Create OAuth client ID (Desktop app)
 5. Download JSON → rename to `credentials.json` → place in project root
 
-#### Install Dependencies
+#### 3. Install Dependencies
 
 ```bash
 pipenv install
