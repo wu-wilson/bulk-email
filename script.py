@@ -131,17 +131,19 @@ def plain_to_html(text: str) -> str:
     return "<br>\n".join(linked.splitlines())
 
 
-def build_mime_message(to: str, subject: str, body: str) -> dict:
+def build_mime_message(to: str, subject: str, body: str, cc: list[str] | None = None) -> dict:
     """Build a multipart plain+HTML email and encode it for the Gmail API."""
     msg = MIMEMultipart("alternative")
     msg["To"] = to
     msg["Subject"] = subject
+    if cc:
+        msg["Cc"] = ", ".join(cc)
     msg.attach(MIMEText(body, "plain", "utf-8"))
     msg.attach(MIMEText(plain_to_html(body), "html", "utf-8"))
     return {"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}
 
 
-def send_email(service, recipient: dict, template: EmailTemplate) -> SendResult:
+def send_email(service, recipient: dict, template: EmailTemplate, cc: list[str] | None = None) -> SendResult:
     """Send a single email and return the result."""
     to = recipient["email"].strip()
     sent_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -151,6 +153,7 @@ def send_email(service, recipient: dict, template: EmailTemplate) -> SendResult:
             to=to,
             subject=template.subject.safe_substitute(recipient),
             body=template.body.safe_substitute(recipient),
+            cc=cc,
         )
         service.users().messages().send(userId="me", body=message).execute()
         log.info(f"SENT     {to}")
@@ -185,6 +188,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--csv", required=True, help="Path to recipients CSV.")
     parser.add_argument("--template", required=True, help="Path to email template.")
     parser.add_argument("--delay", type=float, default=0.0, help="Seconds to wait between sends.")
+    parser.add_argument("--cc", nargs="*", default=[], metavar="ADDRESS", help="One or more addresses to CC on every email.")
     return parser.parse_args()
 
 
@@ -197,7 +201,7 @@ def main() -> None:
 
     results: list[SendResult] = []
     for i, recipient in enumerate(recipients):
-        results.append(send_email(service, recipient, template))
+        results.append(send_email(service, recipient, template, cc=args.cc or None))
         if args.delay and i < len(recipients) - 1:
             time.sleep(args.delay)
 

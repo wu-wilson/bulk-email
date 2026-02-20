@@ -4,6 +4,15 @@ Send personalized emails via Gmail using a CSV list and a text template.
 
 ## 🛠️ Local Setup
 
+### Prerequisites
+
+- Python 3.14+
+- [Pipenv](https://pipenv.pypa.io) — manages dependencies and virtualenv
+
+```bash
+python3 -m pip install pipenv
+```
+
 ### Retrieve OAuth Credentials
 
 1. Create a Google Cloud project
@@ -15,7 +24,8 @@ Send personalized emails via Gmail using a CSV list and a text template.
 ### Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pipenv install
+pipenv shell
 ```
 
 ## 🚀 Example Usage
@@ -23,15 +33,17 @@ pip install -r requirements.txt
 ```bash
 python3 script.py --csv recipients.csv --template template.txt
 python3 script.py --csv recipients.csv --template template.txt --delay 1.5
+python3 script.py --csv recipients.csv --template template.txt --cc boss@example.com legal@example.com
 ```
 
 On first run, a browser window will open to Google's login page. Sign in and grant the app permission to send email. A `token.json` is then saved in the project root — subsequent runs skip the browser and use the saved token.
 
-| Flag         | Required | Description                                  |
-| ------------ | -------- | -------------------------------------------- |
-| `--csv`      | Yes      | Path to recipients CSV                       |
-| `--template` | Yes      | Path to email template                       |
-| `--delay`    | No       | Seconds to wait between sends (default: `0`) |
+| Flag         | Required | Description                                                  |
+| ------------ | -------- | ------------------------------------------------------------ |
+| `--csv`      | Yes      | Path to recipients CSV                                       |
+| `--template` | Yes      | Path to email template                                       |
+| `--delay`    | No       | Seconds to wait between sends (default: `0`)                 |
+| `--cc`       | No       | One or more addresses to CC on every email (space-separated) |
 
 ## 📂 Required Files
 
