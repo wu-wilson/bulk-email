@@ -172,9 +172,10 @@ def write_sent_csv(results: list[SendResult]) -> None:
     if not sent:
         return
 
-    with open(SENT_CSV, "w", newline="", encoding="utf-8") as f:
+    with open(SENT_CSV, "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["email", "sent_at"])
-        writer.writeheader()
+        if f.tell() == 0:
+            writer.writeheader()
         writer.writerows({"email": r.email, "sent_at": r.sent_at} for r in sent)
 
     log.info(f"Sent log written to '{SENT_CSV}'.")
