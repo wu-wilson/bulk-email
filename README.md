@@ -10,7 +10,7 @@ Send personalized emails via Gmail using a CSV list and a text template.
 - [Pipenv](https://pipenv.pypa.io) — manages dependencies and virtualenv
 
 ```bash
-python3 -m pip install pipenv
+brew install pipenv
 ```
 
 #### 2. Retrieve OAuth Credentials
