@@ -1,0 +1,24 @@
+# Credentials
+credentials.json
+token.json
+
+# Input files
+recipients.csv
+template.txt
+
+# Output files
+sent.csv
+send_emails.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/

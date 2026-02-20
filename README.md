@@ -21,8 +21,8 @@ pip install -r requirements.txt
 ## 🚀 Example Usage
 
 ```bash
-python send_emails.py --csv recipients.csv --template template.txt
-python send_emails.py --csv recipients.csv --template template.txt --delay 1.5
+python3 script.py --csv recipients.csv --template template.txt
+python3 script.py --csv recipients.csv --template template.txt --delay 1.5
 ```
 
 On first run, a browser window will open to Google's login page. Sign in and grant the app permission to send email. A `token.json` is then saved in the project root — subsequent runs skip the browser and use the saved token.
