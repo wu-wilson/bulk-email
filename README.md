@@ -68,5 +68,5 @@ I wanted to reach out about $company...
 
 After each run, two files are written:
 
-- **`send_emails.log`** — timestamped log of every send attempt, including failures.
+- **`script.log`** — timestamped log of every send attempt, including failures.
 - **`sent.csv`** — record of every successfully delivered email.

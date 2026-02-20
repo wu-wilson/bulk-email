@@ -8,7 +8,7 @@ template.txt
 
 # Output files
 sent.csv
-send_emails.log
+script.log
 
 # Python
 __pycache__/

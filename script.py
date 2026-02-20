@@ -26,7 +26,7 @@ SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
 CREDENTIALS_FILE = "credentials.json"
 TOKEN_FILE = "token.json"
 SENT_CSV = "sent.csv"
-LOG_FILE = "send_emails.log"
+LOG_FILE = "script.log"
 
 # ---------------------------------------------------------------------------
 # Logging
