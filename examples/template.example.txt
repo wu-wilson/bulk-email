@@ -1,0 +1,8 @@
+Subject: Hi $name, quick question
+
+Hi $name,
+
+I wanted to reach out to you and the team at $company...
+
+Best,
+Your Name
