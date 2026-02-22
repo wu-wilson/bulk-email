@@ -15,8 +15,8 @@ brew install pipenv
 
 #### 2. Retrieve OAuth Credentials
 
-1. Create a Google Cloud project
-2. Enable **Gmail API**
+1. Create a [Google Cloud](https://console.cloud.google.com) project
+2. Enable Gmail API
 3. Configure OAuth consent screen (External → add yourself as test user)
 4. Create OAuth client ID (Desktop app)
 5. Download JSON → rename to `credentials.json` → place in project root
@@ -39,9 +39,9 @@ pipenv shell
 python3 script.py --csv recipients.csv --template template.txt
 ```
 
-On first run, a browser window will open to Google's login page. Sign in and grant the app permission to send email.
+On the first run, a browser window will open to Google's login page. Sign in and grant the app permission to send emails.
 
-A `token.json` is then saved in the project root — subsequent runs skip the browser and use the saved token.
+A `token.json` is then saved in the project root. Subsequent runs will use the saved token.
 
 | Flag         | Required | Description                                                  |
 | ------------ | -------- | ------------------------------------------------------------ |
