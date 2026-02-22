@@ -50,7 +50,7 @@ A `token.json` is then saved in the project root. Subsequent runs will use the s
 | `--delay`    | No       | Seconds to wait between sends (default: `0`)        |
 | `--cc`       | No       | 1+ addresses to CC on every email (space-separated) |
 
-## 📂 Required Files
+## 🗂️ Required Files
 
 The `examples/` folder contains working versions of both files you can use as a reference.
 
