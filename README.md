@@ -33,7 +33,7 @@ pipenv install
 pipenv shell
 ```
 
-## 🚀 Example Usage
+## 🚀 Usage
 
 ```bash
 python3 script.py --csv recipients.csv --template template.txt
@@ -43,12 +43,12 @@ On the first run, a browser window will open to Google's login page. Sign in and
 
 A `token.json` is then saved in the project root. Subsequent runs will use the saved token.
 
-| Flag         | Required | Description                                                  |
-| ------------ | -------- | ------------------------------------------------------------ |
-| `--csv`      | Yes      | Path to recipients CSV                                       |
-| `--template` | Yes      | Path to email template                                       |
-| `--delay`    | No       | Seconds to wait between sends (default: `0`)                 |
-| `--cc`       | No       | One or more addresses to CC on every email (space-separated) |
+| Flag         | Required | Description                                         |
+| ------------ | -------- | --------------------------------------------------- |
+| `--csv`      | Yes      | Path to recipients CSV                              |
+| `--template` | Yes      | Path to email template                              |
+| `--delay`    | No       | Seconds to wait between sends (default: `0`)        |
+| `--cc`       | No       | 1+ addresses to CC on every email (space-separated) |
 
 ## 📂 Required Files
 
