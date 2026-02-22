@@ -25,6 +25,11 @@ brew install pipenv
 
 ```bash
 pipenv install
+```
+
+#### 4. Start a Shell Session
+
+```bash
 pipenv shell
 ```
 
@@ -32,11 +37,11 @@ pipenv shell
 
 ```bash
 python3 script.py --csv recipients.csv --template template.txt
-python3 script.py --csv recipients.csv --template template.txt --delay 1.5
-python3 script.py --csv recipients.csv --template template.txt --cc boss@example.com legal@example.com
 ```
 
-On first run, a browser window will open to Google's login page. Sign in and grant the app permission to send email. A `token.json` is then saved in the project root — subsequent runs skip the browser and use the saved token.
+On first run, a browser window will open to Google's login page. Sign in and grant the app permission to send email.
+
+A `token.json` is then saved in the project root — subsequent runs skip the browser and use the saved token.
 
 | Flag         | Required | Description                                                  |
 | ------------ | -------- | ------------------------------------------------------------ |
@@ -47,22 +52,11 @@ On first run, a browser window will open to Google's login page. Sign in and gra
 
 ## 📂 Required Files
 
-**`recipients.csv`** — requires an `email` column; all other columns are available as `$variable` placeholders in the template:
+The `examples/` folder contains working versions of both files you can use as a reference.
 
-```
-email,name,company
-jane@example.com,Jane,Acme
-john@example.com,John,Globex
-```
+1. **`recipients.csv`** — requires an `email` column; all other columns are available as `$variable` placeholders in the template.
 
-**`template.txt`** — first line must be the subject; remaining lines are the body. Use `$column_name` for personalization:
-
-```
-Subject: Hi $name, quick question
-Hi $name,
-
-I wanted to reach out about $company...
-```
+2. **`template.txt`** — first line must be the subject; remaining lines are the body. Use `$column_name` for personalization.
 
 ## ✨ Output
 
