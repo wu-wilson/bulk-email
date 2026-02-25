@@ -6,6 +6,8 @@ import sys
 import time
 import html
 import re
+import markdown
+import bleach
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from email.mime.multipart import MIMEMultipart
@@ -178,6 +180,45 @@ def plain_to_html(text: str) -> str:
     )
     return "<br>\n".join(linked.splitlines())
 
+def markdown_to_html(md_text: str) -> str:
+    """Convert Markdown to sanitized HTML representation.
+
+    Args:
+        text: Plain text string to convert.
+
+    Returns:
+        An HTML string suitable for use as the HTML part of a MIME email.
+    """
+    html_body = markdown.markdown(
+        md_text,
+        extensions=["extra", "sane_lists", "nl2br"]  # nl2br keeps newlines readable
+    )
+
+    allowed_tags = [
+        "p", "br", "strong", "em", "b", "i",
+        "ul", "ol", "li",
+        "blockquote",
+        "code", "pre",
+        "a",
+        "h1", "h2", "h3", "h4"
+    ]
+    allowed_attrs = {
+        "a": ["href", "title"],
+    }
+    allowed_protocols = ["http", "https", "mailto"]
+
+    cleaned = bleach.clean(
+        html_body,
+        tags=allowed_tags,
+        attributes=allowed_attrs,
+        protocols=allowed_protocols,
+        strip=True,
+    )
+
+    cleaned = bleach.linkify(cleaned)
+
+    return cleaned
+
 
 def build_mime_message(to: str, subject: str, body: str, cc: list[str] | None = None) -> dict:
     """Construct a multipart MIME email and encode it for the Gmail API.
@@ -201,7 +242,7 @@ def build_mime_message(to: str, subject: str, body: str, cc: list[str] | None = 
     if cc:
         msg["Cc"] = ", ".join(cc)
     msg.attach(MIMEText(body, "plain", "utf-8"))
-    msg.attach(MIMEText(plain_to_html(body), "html", "utf-8"))
+    msg.attach(MIMEText(markdown_to_html(body), "html", "utf-8"))
     return {"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}
 
 

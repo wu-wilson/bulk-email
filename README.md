@@ -1,6 +1,6 @@
 ## ⚡ Overview
 
-Send personalized emails via Gmail using a CSV list and a text template.
+Send personalized emails via Gmail using a CSV list and a markdown template.
 
 ## 🛠️ Local Setup
 
@@ -36,7 +36,7 @@ pipenv shell
 ## 🚀 Usage
 
 ```bash
-python3 script.py --csv recipients.csv --template template.txt
+python3 script.py --csv recipients.csv --template template.md
 ```
 
 On the first run, a browser window will open to Google's login page. Sign in and grant the app permission to send emails.
@@ -56,7 +56,7 @@ The `examples/` folder contains working versions of both files you can use as a 
 
 1. **`recipients.csv`** — requires an `email` column; all other columns are available as `$variable` placeholders in the template.
 
-2. **`template.txt`** — first line must be the subject; remaining lines are the body. Use `$column_name` for personalization.
+2. **`template.md`** — first line must be the subject; remaining lines are the body. Use `$column_name` for personalization.
 
 ## ✨ Output
 
